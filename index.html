@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/x-icon" href="https://scontent.xx.fbcdn.net/v/t1.15752-9/393114550_3728769244073829_2175968248411193018_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=Jm3_GKlJSeQQ7kNvgH6LAEA&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QH4Bkno0UKwGPB8moA51XhdpLLFrq_zCAOiTFiUjZh0Nw&oe=6783C3B2">
+<style>
+     body, html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color:  AntiqueWhite;
+    }
+
+    .topnav {
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    .topnav a {
+        float: left;
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        border-bottom: 3px solid transparent;
+    }
+
+    .topnav a:hover {
+        border-bottom: 3px solid DarkSalmon;
+    }
+
+    .topnav a.active {
+        border-bottom: 3px solid gray;
+    }
+
+    /* شاشة الترحيب */
+    .welcome-screen {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-image: url("https://i.pinimg.com/736x/57/9a/30/579a307bf6218e6a42f690066d8d337b.jpg"); 
+        background-size: cover;
+        background-position: center;
+        position: relative;
+    }
+
+    .welcome-screen h1 {
+        font-size: 50px;
+        color: white;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+        text-align: center;
+    }
+
+    .enter-button {
+        background-color:DarkSalmon;
+        color: AntiqueWhite;
+        font-size: 18px;
+        padding:18px 40px;
+        border-radius: 5px;
+        text-decoration: none;
+        text-align: center;
+        display: inline-block;
+        margin-top: 20px;
+        transition: background-color 0.3s;
+    }
+
+    .enter-button:hover {
+        background-color: rgba(0, 0, 0, 0.0);
+    }
+
+    /* صفحة الصور */
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+        display: none; /* Initially hidden */
+    }
+
+    .gallery img {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+    }
+
+    /* التنسيق في حال كانت الشاشة صغيرة */
+    @media (max-width: 768px) {
+        .welcome-screen h1 {
+            font-size: 35px;
+        }
+
+        .enter-button {
+            font-size: 16px;
+        }
+    }
+
+    footer {
+  background-color: AntiqueWhite;
+  padding: 60px;
+  text-align: center;
+  border-top: 8px solid #ddd;
+  font-family: Arial, sans-serif;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#sm {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 10px;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+h4 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: bold;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-link {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: black;
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  background-color: #777;
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* تنسيق زر العودة إلى الأعلى */
+#scrollToTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #777;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  display: none; /* المخفي في البداية */
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#scrollToTopBtn:hover {
+  background-color: black;
+}
+</style>
+</head>
+<body>
+
+<!-- شاشة الترحيب -->
+<div id="welcomeScreen" class="welcome-screen">
+<div>
+<a href="#gallery" class="enter-button">Enter</a>
+</div>
+</div>
+
+<!-- صفحة الصور -->
+<div id="gallery" class="gallery" style="display: none;">
+<div class="topnav">
+<a href="#mr">Home</a>
+<a href="#sm">Social Media</a>
+</div>
+<br>
+<br>
+<h1 id="mr"></h1>
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462576733_852590863485859_3275423690452659411_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=8Oeas_RKsEwQ7kNvgGqc0XM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFpb3jwMWaYjE4CMVZtIq-o0XjrWpVcROen6PHlN16oow&oe=6783810A" alt="Image 1">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462567467_1231010888006335_8017991191465721014_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_ohc=AEzpQTZMqj8Q7kNvgGrmMf6&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHpiYlZCcwse_CKpyRj-TxLuOCZ5kfG9HVDkcErALT1ZA&oe=67839C7C" alt="Image 2">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/466004190_2262337117476736_3308556059786035107_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=wMnK251f_PoQ7kNvgGDzRPj&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEnK_heHsMOWQ8AUhz9sbH1onFn0Fk0A70Ms3LPla2jiQ&oe=6783849B" alt="Image 3">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462551220_447010678451731_3201894141826476110_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=AXfDZ0zsdWQQ7kNvgFcTF_k&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHiXKNVNAdIhN_DbSvBEWJI8xkFJCWjr8o0pWGrIgS-Yg&oe=6783743B" alt="Image 4">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462577310_616262061075353_3157426057449485886_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=3kIloNUkiAEQ7kNvgE44CgW&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEflkAsvFQOagF7m6nQEmX2Zx9flt3vqXGPO29aLg-jdA&oe=678393EE" alt="Image 5">
+
+
+<button onclick="scrollToTop()" id="scrollToTopBtn" title="الرجوع إلى الأعلى">↑</button>
+
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462567368_2528071410719513_5970968735245980407_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=uxY2uVCKdGYQ7kNvgErnDSp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF2ZGNWNBIbX2-ao3YIpf7Y69KBePCQumW8g-m3GgcNJQ&oe=6783A5CA" alt="Image 6">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462549715_1618108862433950_8755517849717411478_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=97Dk3nVtbqkQ7kNvgET6AcM&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF66DB83TvgnKxdoerMvA8esUBsNRHeq1P_zWRrPJMarA&oe=6783AE77" alt="Image 7">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462565611_972603004686774_409832362388250011_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=PIf1QlV2A1EQ7kNvgFLBD23&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QH_APJTFiwJ4Oa20A4hQOfTMQnE8AIaiJt5Ot51FZMpLw&oe=678378B0" alt="Image 8">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462561292_1138384284299908_374407134807831343_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=bxJlgDPlAGcQ7kNvgFomiWE&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG8nXS7uxCXdSR8mjTcamMIXFl_NQleAQDzWhshHh4srQ&oe=67839FDD" alt="Image 9">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462580048_1796381894466267_7613590854987966846_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=106&ccb=1-7&_nc_sid=0024fc&_nc_ohc=H2MWDIHw564Q7kNvgH9TP4h&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEDcly4bpwFPuWPrCE9KqLGsYaHK_lWY4SOgkgwot-82A&oe=678398FF" alt="Image 10">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462554578_1161363808932070_6403966540646814555_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=Cn36b_oOO2EQ7kNvgGXPYwe&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHJGYVa_jmrFbg5UKBxT3Xarel1IzeQJqpnSBVNiSrW0Q&oe=6783901F" alt="Image 11">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462551227_872906988250027_6361325189859145647_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=4x6Wfbu3o5gQ7kNvgGqGAfk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QEJo3PbaxpkzFQ6TsxJRNNSroivamsAccKru1DICduq-w&oe=6783921A" alt="Image 12">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462583563_1634953597405720_2502847264156132847_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=fcHfeTfyTdAQ7kNvgE9LOk_&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHuzriNJLiWUTvbE5Ql1_I29duNDNsxGpz20oEwE4akFw&oe=67839CDC" alt="Image 13">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462554490_1392178458410568_5563358157048915514_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=3A-8weZRzFsQ7kNvgF_rXyg&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG-sLJzbk4cwUwsQQ2LgjwwDp-k2mwrD9bXrAovG41-Eg&oe=678390B3" alt="Image 14">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462567368_976999234477261_7171581335224084737_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=qsCUtZilZdYQ7kNvgE8TQWF&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QG4p5yPpKNpRYh8IFIjxWVG4wI3QLSbsEbEOKmfpx1VeA&oe=67837EC7" alt="Image 15">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462573364_1745004696281834_8174782469833559458_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=110&ccb=1-7&_nc_sid=0024fc&_nc_ohc=lP6OQNmFWCEQ7kNvgF2GwU6&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGpdbc-tPJQvA9tRaOEvppItpCOK8C_hA82l366de9DbA&oe=6783B72A" alt="Image 16">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462579507_1094224042004907_1363506970721510357_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=cNu9mIFOhQIQ7kNvgFnPUGi&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFBaMBpQzHF2YIphNU4Q-l04DfxWojw2HNsUzbzEZRIKg&oe=678395DB" alt="Image 17">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462566452_611366517897243_8975725994358282072_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=105&ccb=1-7&_nc_sid=0024fc&_nc_ohc=6Gyau4UlXjAQ7kNvgGwWSOT&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGWSb9kfviE3pZ3zUe6xuNZFo2_E3jREjN2vX2aLrJsog&oe=6783871A" alt="Image 18">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/466886283_1500835753913717_7389976468500889848_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_ohc=hhBTMt-LLQIQ7kNvgFeVV6Z&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGDYGXk0N-zSE0MNgNUuyNt5-pesietVsuXij7GM62CVw&oe=67839CF1" alt="Image 16">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/466545077_499614752535966_1704409359967804802_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=0024fc&_nc_ohc=vWXJGgRKyc8Q7kNvgFaPFqY&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFEH3a9d4ydGmSLm_jCv-3PpdZUzUR9da9CiI2BkFPczQ&oe=67839427" alt="Image 17">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462554586_1338242857178823_19036884097815648_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=Ywrp6zcxHLYQ7kNvgFPDtFp&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHczzABwd85lO-13NR4YtWMeEW0HYJTwx2azNW1__--8A&oe=6783B628" alt="Image 18">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563456_926652986072812_2499342859687236132_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=EfaKUcpJ5AkQ7kNvgHvddWP&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QH7T7NflMPRZMryQHC_KLokObXZ44PnJ6hEE4A7gDmI6Q&oe=6783B0D8" alt="Image 19">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462565683_566664992817054_2614775822681923382_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_ohc=zQNAQr_tMxYQ7kNvgFKK6E-&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QE7V_vxOnztJVH9-Cjsm8zfVo05LAT0Vv0KhOgGQiv3mg&oe=67839AD3" alt="Image 20">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563528_1195139522280154_4172693377198055399_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=nq_t8sxP830Q7kNvgFGQIxj&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGCT_rsATSR_4vz3xN2rER5Aq_Dc6COc0m_5yT7qwnRQw&oe=67839BFE" alt="Image 21">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462555135_1769740967178621_6235311814759180346_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_ohc=x09qTczqXSwQ7kNvgHS954g&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHCCIQ0v6A9TNJwXPpE4ruWab4nEMW_f3g3_EzReS3UgA&oe=67839865" alt="Image 22">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462580152_484436654164334_5448701456796975326_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=FRBlQrJsydsQ7kNvgEA6QBT&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QERcxg1G6xFUU0-tz5vnPJStLVzYMFsLHd8PQYfdtcKFQ&oe=6783930D" alt="Image 23">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462548129_550607357871212_2031913634937770110_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=l6PxSi9AYkUQ7kNvgFuuGLj&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QE4lSKFq_ZfvbLCUV_putURvIY7AKCwApOM4G5m2RYUOA&oe=67838CFC" alt="Image 24">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462562785_561278973422216_400024120235397749_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=5D9A3EWIjHAQ7kNvgGHlInj&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QF2WRU3L9QZsrLE-9iQOoQGpbIPPnntmitiFlsldxbchQ&oe=6783B2D1" alt="Image 25">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462583682_559474636877636_2153663479497041903_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=6DkXNzv0K4MQ7kNvgFd03oD&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHFNpRI-15fZcB7yXNpigEQLOjFF_wh_NozmoKD3CQf0A&oe=678397F3" alt="Image 26">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462548123_1098235198176755_2660532157723848708_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=101&ccb=1-7&_nc_sid=0024fc&_nc_ohc=9tTxoIaFGD0Q7kNvgHZYJpe&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFqr9Rs5AM2XfcUbTups-ruklO6Ssf3648F6txXJBQ72g&oe=6783897A" alt="Image 27">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462554488_569628905689315_7821712207156071706_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=5vNmOoyrQioQ7kNvgFnJFUk&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QFcdE6_39FHB_kOZhCi34IoCIsJsW367ysq0tR9MdEtiw&oe=6783B48E" alt="Image 28">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563130_796917229242074_602857363701118248_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=100&ccb=1-7&_nc_sid=0024fc&_nc_ohc=CPAB1LA6urIQ7kNvgFGuMfL&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGvgaFg1UldUBN8_AWTtZLr5H8uD2azyu39zox7te71iQ&oe=6783BCC0" alt="Image 29">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462557694_3864322250455394_5472568242396746855_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=111&ccb=1-7&_nc_sid=0024fc&_nc_ohc=bdwp7dj2ec0Q7kNvgFs6dhU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHMkcvbVp4vXZElpRlTOdEJriRYoouRBmDZBVbc-XW7IA&oe=67839949" alt="Image 21">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563029_1633477537242055_1313005212515242545_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=sAKQaclBZ5YQ7kNvgHgCxRV&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGhX-WAbnlMU8TM8m2N5UPfnWoUa66ZbkHUANHXxsLG1Q&oe=6783A46B" alt="Image 30">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462565634_1260894925144912_8785580539240701925_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=108&ccb=1-7&_nc_sid=0024fc&_nc_ohc=NbkiIsrewYQQ7kNvgHjYvQ2&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHYW65I2TT7sWcILzFYzj_CEvACKm5dGU-tFUKijx_nKQ&oe=67839F1D" alt="Image 31">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563528_571456482185133_3119478996896200439_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=109&ccb=1-7&_nc_sid=0024fc&_nc_ohc=haZq8-Wu0C4Q7kNvgFtjiPP&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGhXY9FMED0Tf9Xpi2xjkz3qPNucd5ZGivalAJLlRB2oA&oe=67839492" alt="Image 32">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462563112_1527536144406077_7266649800353334192_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=107&ccb=1-7&_nc_sid=0024fc&_nc_ohc=pbSwRgRbxS4Q7kNvgEVdmdJ&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QHljfSJTGMkvTkeEpI7PY3jtdWNZC8pvUD-2-CHaflZfQ&oe=67838BF2" alt="Image 33">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462548167_565383016248552_2311566292397787816_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=102&ccb=1-7&_nc_sid=0024fc&_nc_ohc=4-lchkQEaJkQ7kNvgGvNfZW&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGeHauY_k1pguZHSq82ILJhqn2CTDNE1RbDYmVm-luDLQ&oe=6783ACFB" alt="Image 33">
+
+<img src="https://scontent.xx.fbcdn.net/v/t1.15752-9/462580152_1140595566965173_7973375199928442863_n.jpg?stp=dst-jpg_p480x480_tt6&_nc_cat=103&ccb=1-7&_nc_sid=0024fc&_nc_ohc=SgrsY177MqcQ7kNvgFCvWAq&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=scontent.xx&oh=03_Q7cD1QGn4PldyfyOboP-0BZ9wXlm1avRzi9DO3Z5eioOL5PHbQ&oe=6783BC8A" alt="Image 33">
+
+<br>
+<br>
+<footer>
+<p id="sm"></p>
+<h4>Follow me on:</h4>
+<div class="social-links">
+<a href="https://www.instagram.com/ia_di8/?hl=ar" target="_blank" class="social-link">Instagram</a>
+<a href="https://snapchat.com/t/aDE7i5rf" target="_blank" class="social-link">Snapchat</a>
+<a href="https://www.tiktok.com/@ia_di8" target="_blank" class="social-link">TikTok</a>
+ </div>
+</footer>
+
+<script>
+// إخفاء شاشة الترحيب عند النقر على الزر
+document.querySelector('.enter-button').addEventListener('click', function() {
+document.getElementById('welcomeScreen').style.display = 'none';
+document.getElementById('gallery').style.display = 'grid'; });
+
+// الحصول على زر العودة إلى الأعلى
+let mybutton = document.getElementById("scrollToTopBtn");
+
+// عند التمرير لأسفل بـ 20px أو أكثر، يظهر الزر
+window.onscroll = function() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+};
+
+// عند النقر على الزر، العودة إلى الأعلى
+function scrollToTop() {
+  document.body.scrollTop = 0; // لأجهزة iOS
+  document.documentElement.scrollTop = 0; // لأجهزة الكمبيوتر العادية
+}
+</script>
+</body>
+</html>
